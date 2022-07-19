@@ -1,0 +1,17 @@
+<script>
+  //adds event ready for accordion widget and keep it closed if has class 'dont-open'
+
+	jQuery( window ).on( 'elementor/frontend/init', () => {
+    var $ = jQuery;
+    const addHandler = ( $element ) => {
+		 window.acc = $element;
+		 if($element[0].classList.contains("dont-open")){
+			 setTimeout(function(){
+				 	$('.elementor-tab-title', $element).removeClass('elementor-active');
+		 			$('.elementor-tab-content', $element).css('display', 'none');
+			 }, 1);
+		 }
+   };
+   elementorFrontend.hooks.addAction( 'frontend/element_ready/accordion.default', addHandler );
+} );
+</script>
